@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHRC ADVOCACIA | Advocacia de Elite</title>
+    
+    <!-- 
+        AUTOMINDS - MASTER TEMPLATE v1.0 (TRACK ADVOCACIA)
+        Orquestrado por: COO (Assistant Manager)
+        Estratégia: CMO | UI/UX | HEAD_COPY | DESIGNER
+    -->
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* DESIGN TOKENS - EXTRAÍDOS DO STYLE_GUIDE_ADVOCACIA.md */
+        :root {
+            --primary: #0A1128;      /* Navy Royal */
+            --secondary: #1C1C1C;    /* Charcoal */
+            --accent: #D4AF37;       /* Deep Gold */
+            --text: #FDFFFC;          /* Ivory */
+            --text-muted: #8D9095;
+            --serif: 'Bodoni Moda', serif;
+            --sans: 'Outfit', sans-serif;
+            --container: 1400px;
+            --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            --hairline: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            font-family: var(--sans);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* TIPOGRAFIA DE ELITE */
+        h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.02em; }
+        p { font-weight: 300; font-size: 1.1rem; color: var(--text-muted); }
+        
+        .gold-text { color: var(--accent); }
+        .uppercase { text-transform: uppercase; letter-spacing: 3px; font-size: 0.75rem; font-weight: 600; }
+
+        /* LAYOUT CORE */
+        .container { max-width: var(--container); margin: 0 auto; padding: 0 4%; }
+        section { padding: 160px 0; border-bottom: var(--hairline); }
+
+        /* NAVBAR (GLASSMORPHISM) */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 30px 0; transition: var(--transition);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            backdrop-filter: blur(15px);
+            background: rgba(10, 17, 40, 0.7);
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--serif); font-size: 1.8rem; text-decoration: none; color: var(--text); }
+        .nav-links { display: flex; gap: 40px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text); font-size: 0.8rem; }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            padding: 18px 45px;
+            border: 1px solid var(--accent);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary { background: var(--accent); color: var(--primary); }
+        .btn-primary:hover { background: transparent; color: var(--accent); transform: translateY(-3px); }
+        .btn-outline { color: var(--accent); background: transparent; }
+        .btn-outline:hover { background: var(--accent); color: var(--primary); }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 100px;
+            background: linear-gradient(rgba(10, 17, 40, 0.8), rgba(10, 17, 40, 0.8)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop') center/cover;
+        }
+        .hero-content { max-width: 900px; }
+        .hero h1 { font-size: 4.5rem; line-height: 1.1; margin-bottom: 30px; opacity: 0; transform: translateY(30px); }
+        .hero p { font-size: 1.4rem; margin-bottom: 40px; max-width: 600px; opacity: 0; transform: translateY(30px); }
+        .hero-btns { display: flex; gap: 20px; opacity: 0; transform: translateY(30px); }
+
+        /* TRUST BAR */
+        .trust-bar {
+            padding: 40px 0;
+            background: var(--secondary);
+            border-bottom: var(--hairline);
+            text-align: center;
+        }
+        .trust-content { display: flex; justify-content: space-around; align-items: center; filter: grayscale(1) invert(1) opacity(0.5); }
+        .trust-content img { height: 35px; }
+
+        /* CONTEXT SECTION */
+        .context { background: #070C1D; }
+        .context-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+        .context h2 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 30px; }
+
+        /* SOLUTIONS CARDS */
+        .solutions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
+        .card {
+            padding: 60px 40px;
+            background: rgba(28, 28, 28, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition);
+        }
+        .card:hover { border-color: var(--accent); background: rgba(28, 28, 28, 0.8); transform: translateY(-10px); }
+        .card-icon { color: var(--accent); margin-bottom: 30px; font-size: 2rem; }
+        .card h3 { font-size: 2rem; margin-bottom: 20px; color: var(--text); }
+
+        /* TEAM SECTION */
+        .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .partner-img { width: 100%; height: 600px; object-fit: cover; filter: sepia(0.2) contrast(1.1); }
+        .partner-info { padding: 40px 0; }
+        .partner-info h3 { font-size: 2.5rem; margin-bottom: 10px; }
+
+        /* ANIMATIONS */
+        .reveal { opacity: 0; transform: translateY(40px); transition: var(--transition); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* WHATSAPP FLOAT */
+        .wa-float {
+            position: fixed; bottom: 40px; right: 40px;
+            width: 60px; height: 60px; background: #25D366;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 999;
+            text-decoration: none; color: white; font-size: 24px;
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 968px) {
+            .hero h1 { font-size: 3rem; }
+            .context-grid, .solutions-grid, .team-grid { grid-template-columns: 1fr; gap: 50px; }
+            section { padding: 80px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- WHATSAPP -->
+    <a href="https://wa.me/5531999393230?text=Olá! Gostaria de agendar uma consulta estratégica." class="wa-float" id="whatsapp-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+        </svg>
+    </a>
+
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo" data-field="brand.name">SHRC ADVOCACIA</a>
+            <div class="nav-links">
+                <a href="#about" class="uppercase">Sobre</a>
+                <a href="#solutions" class="uppercase">Soluções</a>
+                <a href="#partners" class="uppercase">A Banca</a>
+                <a href="https://wa.me/5531999393230?text=Olá! Gostaria de agendar uma consulta estratégica." class="btn btn-outline" data-field="hero.cta">Agendar Consulta</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero" id="home">
+            <div class="container hero-content">
+                <p class="uppercase gold-text reveal" style="margin-bottom: 20px;">Advocacia de Alta Performance</p>
+                <h1 data-field="hero.headline">Defesa de Elite para Casos de Alta Complexidade em Direito Criminal.</h1>
+                <p data-field="hero.subheadline">Protegemos sua liberdade e seu patrimônio com o rigor técnico que 113 clientes já confiaram.</p>
+                <div class="hero-btns reveal">
+                    <a href="https://wa.me/5531999393230?text=Olá! Gostaria de agendar uma consulta estratégica." class="btn btn-primary" data-field="hero.cta">Agendar Consulta Estratégica</a>
+                    <a href="#solutions" class="btn btn-outline">Nossas Soluções</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRUST BAR -->
+        <div class="trust-bar">
+            <div class="container trust-content">
+                <span class="uppercase">Excelência Reconhecida por:</span>
+                <!-- Logos fictícios de rankings jurídicos -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Forbes_logo.svg" alt="Forbes">
+                <img src="https://chambers.com/img/chambers-logo.png" alt="Chambers">
+                <img src="https://www.legal500.com/wp-content/themes/l500/assets/images/logo.png" alt="Legal 500">
+            </div>
+        </div>
+
+        <!-- CONTEXT / PAIN -->
+        <section class="context" id="about">
+            <div class="container context-grid">
+                <div class="reveal">
+                    <h2 data-field="context.headline">No topo, o erro mais caro é a hesitação.</h2>
+                    <p data-field="context.copy">O escritório SHRC ADVOCACIA não apenas representa clientes; nós construímos fortalezas jurídicas. Com nota máxima no Google e reconhecimento local, nossa missão é garantir que nenhum detalhe seja negligenciado na sua defesa.</p>
+                </div>
+                <div class="reveal" style="border-left: 2px solid var(--accent); padding-left: 40px;">
+                    <p style="color: var(--text); font-size: 1.5rem; font-family: var(--serif);">"Transformamos sua excelência técnica invisível em autoridade inquestionável e receita previsível."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOLUTIONS -->
+        <section id="solutions">
+            <div class="container">
+                <div style="text-align: center; max-width: 800px; margin: 0 auto 80px;">
+                    <p class="uppercase gold-text">Especialidades</p>
+                    <h2 class="section-title">Engenharia de Soluções Jurídicas</h2>
+                </div>
+                <div class="solutions-grid">
+                    <div class="card reveal">
+                        <div class="card-icon">01</div>
+                        <h3>Inteligência Tributária</h3>
+                        <p>Maximização de eficiência fiscal com conformidade absoluta e segurança jurídica total.</p>
+                    </div>
+                    <div class="card reveal">
+                        <div class="card-icon">02</div>
+                        <h3>Arquitetura Societária</h3>
+                        <p>Estruturas robustas para expansão, fusões (M&A) e proteção de governança corporativa.</p>
+                    </div>
+                    <div class="card reveal">
+                        <div class="card-icon">03</div>
+                        <h3>Blindagem Patrimonial</h3>
+                        <p>A arte de perpetuar legados através de estratégias jurídicas inabaláveis e sucessão planejada.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEAM -->
+        <section id="partners">
+            <div class="container team-grid">
+                <div class="reveal">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" alt="Sócio" class="partner-img">
+                </div>
+                <div class="partner-info reveal">
+                    <p class="uppercase gold-text">Capital Intelectual</p>
+                    <h3>Dr. Ricardo Santos</h3>
+                    <p class="uppercase" style="margin-bottom: 20px;">Sócio-Fundador | Estratégia e Liderança</p>
+                    <p>Com trajetória consolidada em cortes superiores e conselhos de administração, nossos sócios não delegam a sua causa. Eles lideram cada linha da sua defesa. Atendimento boutique, direto e sem intermediários.</p>
+                    <br>
+                    <a href="#" class="btn btn-outline">Currículo Lattes</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section style="background: var(--accent); color: var(--primary); text-align: center;">
+            <div class="container reveal">
+                <h2 style="font-size: 4rem; margin-bottom: 30px;">Pronto para consolidar sua autoridade?</h2>
+                <p style="color: var(--primary); font-weight: 500; margin-bottom: 40px; font-size: 1.5rem;">Sua próxima decisão estratégica começa com uma consulta especializada.</p>
+                <a href="#" class="btn btn-primary" style="background: var(--primary); color: var(--accent); border-color: var(--primary);">Agendar Agora</a>
+            </div>
+        </section>
+    </main>
+
+    <footer style="padding: 100px 0; background: #050814; border-top: var(--hairline);">
+        <div class="container" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 100px;">
+            <div>
+                <a href="#" class="logo">SHRC ADVOCACIA</a>
+                <p style="margin-top: 20px; max-width: 400px;">Escritório boutique focado em soluções jurídicas de alta complexidade. Rigor. Autoridade. Resultado.</p>
+            </div>
+            <div>
+                <h4 class="uppercase" style="margin-bottom: 30px;">Navegação</h4>
+                <p><a href="#home" style="color: var(--text-muted); text-decoration: none;">Home</a></p>
+                <p><a href="#about" style="color: var(--text-muted); text-decoration: none;">Sobre</a></p>
+                <p><a href="#solutions" style="color: var(--text-muted); text-decoration: none;">Soluções</a></p>
+            </div>
+            <div>
+                <h4 class="uppercase" style="margin-bottom: 30px;">Contato</h4>
+                <p>Belo Horizonte - MG</p>
+                <p>contato@shrcadvocacia.com.br</p>
+                <p>+55 31 99939-3230</p>
+            </div>
+        </div>
+        <div class="container" style="margin-top: 80px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px;">
+            <p style="font-size: 0.8rem;">&copy; 2026 AUTOMINDS Revenue Engineering. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // CONFIGURAÇÃO DINÂMICA ( FUEL )
+        window.SITE_CONFIG = {
+            "brand": {
+                        "name": "SHRC ADVOCACIA"
+            },
+            "colors": {
+                        "primary": "#0A1128",
+                        "secondary": "#1C1C1C",
+                        "accent": "#D4AF37",
+                        "text": "#FDFFFC"
+            },
+            "hero": {
+                        "headline": "Defesa de Elite para Casos de Alta Complexidade em Direito Criminal.",
+                        "subheadline": "Protegemos sua liberdade e seu patrimônio com o rigor técnico que 113 clientes já confiaram.",
+                        "cta": "Agendar Consulta Urgente"
+            },
+            "context": {
+                        "headline": "No tribunal, a sua maior fraqueza é a falta de uma estratégia agressiva.",
+                        "copy": "O escritório SHRC ADVOCACIA não apenas representa clientes; nós construímos fortalezas jurídicas. Com nota máxima no Google e reconhecimento local, nossa missão é garantir que nenhum detalhe seja negligenciado na sua defesa."
+            }
+};
+
+        // MOTOR DE INJEÇÃO
+        function injectData() {
+            const config = window.SITE_CONFIG;
+            document.querySelectorAll('[data-field]').forEach(el => {
+                const path = el.getAttribute('data-field');
+                const value = path.split('.').reduce((obj, key) => obj[key], config);
+                if (value) el.innerText = value;
+            });
+        }
+
+        // MOTOR DE ANIMAÇÃO (SCROLL REVEAL)
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        // HERO ANIMATION INITIAL
+        window.addEventListener("load", () => {
+            injectData();
+            document.querySelector('.hero h1').style.opacity = "1";
+            document.querySelector('.hero h1').style.transform = "translateY(0)";
+            setTimeout(() => {
+                document.querySelector('.hero p').style.opacity = "1";
+                document.querySelector('.hero p').style.transform = "translateY(0)";
+            }, 300);
+            setTimeout(() => {
+                document.querySelectorAll('.hero-btns').forEach(el => {
+                    el.style.opacity = "1";
+                    el.style.transform = "translateY(0)";
+                });
+            }, 600);
+            reveal();
+        });
+
+        window.addEventListener("scroll", reveal);
+    </script>
+</body>
+</html>
