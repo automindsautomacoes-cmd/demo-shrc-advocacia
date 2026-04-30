@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHRC ADVOCACIA | Defesa de Elite</title>
+    <title>SHRC ADVOCACIA | Advocacia de Elite</title>
     
     <!-- 
-        AUTOMINDS - MASTER TEMPLATE v3.0 (ARCHETYPE: URGENT)
+        AUTOMINDS - BENTO EDITORIAL v2.0 (DIAS CODE)
         Orquestrado por: COO (Assistant Manager)
-        Strategy: High Conversion for Criminal Law
+        Design System: Elite Bento
     -->
 
     <!-- Google Fonts -->
@@ -16,128 +16,219 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <style id="theme-style">
+    <style>
         :root {
             --primary: #070B14;
-            --secondary: #121826;
-            --accent: #E53E3E; /* RED for URGENT */
-            --accent-light: #FC8181;
+            --secondary: #0D1321;
+            --accent: #D4AF37;
             --text: #F8F9FA;
             --text-muted: #A0AEC0;
             --serif: 'Bodoni Moda', serif;
             --sans: 'Outfit', sans-serif;
-            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            --hairline: 1px solid rgba(229, 62, 62, 0.2);
+            --hairline: 1px solid rgba(255, 255, 255, 0.12);
+            --transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        html { scroll-behavior: smooth; }
-        body { background-color: var(--primary); color: var(--text); font-family: var(--sans); overflow-x: hidden; line-height: 1.6; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; border-radius: 0 !important; }
 
-        .container { max-width: 1300px; margin: 0 auto; padding: 0 5%; }
-        section { padding: 120px 0; border-bottom: var(--hairline); display: block; }
-        .hidden { display: none !important; }
+        body { 
+            background-color: var(--primary); 
+            color: var(--text); 
+            font-family: var(--sans); 
+            overflow-x: hidden;
+            line-height: 1.4;
+        }
 
-        /* HERO STYLES */
-        .hero { height: 100vh; display: flex; align-items: center; background-size: cover; background-position: center; position: relative; }
-        .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--primary) 40%, transparent 100%); z-index: 1; }
-        .hero-content { position: relative; z-index: 2; max-width: 800px; }
-        .hero h1 { font-family: var(--serif); font-size: clamp(3rem, 8vw, 5rem); line-height: 1; margin-bottom: 25px; }
+        /* GRID SYSTEM (BENTO BOX) */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(100px, auto);
+            gap: 0;
+            border-top: var(--hairline);
+            border-left: var(--hairline);
+        }
+
+        .bento-item {
+            border-right: var(--hairline);
+            border-bottom: var(--hairline);
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .bento-item.reveal { opacity: 1; transform: translateY(0); }
+
+        /* AREAS DEFINITION */
+        .hero-text { grid-column: span 7; grid-row: span 4; display: flex; flex-direction: column; justify-content: center; }
+        .hero-img { grid-column: span 5; grid-row: span 4; padding: 0; }
+        .hero-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.1); }
+
+        .manifesto { grid-column: span 12; padding: 120px 20%; text-align: center; border-left: none; }
         
-        /* COMMON UI */
-        .uppercase { text-transform: uppercase; letter-spacing: 4px; font-size: 0.75rem; font-weight: 700; color: var(--accent); margin-bottom: 20px; display: block; }
-        .btn { display: inline-block; padding: 18px 40px; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; font-weight: 700; transition: var(--transition); border: none; cursor: pointer; }
-        .btn-primary { background: var(--accent); color: var(--primary); }
-        .btn-outline { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
-        .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .practice-a { grid-column: span 4; grid-row: span 3; }
+        .practice-b { grid-column: span 4; grid-row: span 3; }
+        .practice-img { grid-column: span 4; grid-row: span 6; padding: 0; }
+        .practice-img img { width: 100%; height: 100%; object-fit: cover; }
+        .practice-c { grid-column: span 8; grid-row: span 3; }
 
-        /* REVIEWS */
-        .review-card { padding: 30px; background: rgba(255,255,255,0.02); border-left: 4px solid var(--accent); margin-bottom: 20px; }
-        .review-text { font-style: italic; font-size: 1.1rem; margin-bottom: 15px; }
-        .review-author { font-weight: 700; color: var(--accent); }
+        .partner-img { grid-column: span 5; grid-row: span 5; padding: 0; }
+        .partner-img img { width: 100%; height: 100%; object-fit: cover; }
+        .partner-bio { grid-column: span 7; grid-row: span 5; display: flex; flex-direction: column; justify-content: center; }
 
-        /* NAVBAR */
-        nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 30px 0; transition: 0.3s; }
-        nav.scrolled { background: var(--primary); padding: 15px 0; border-bottom: var(--hairline); }
-        .nav-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--serif); font-size: 1.5rem; color: var(--text); text-decoration: none; font-weight: 700; }
+        .cta-box { grid-column: span 12; text-align: center; padding: 120px 0; }
+
+        /* TYPOGRAPHY */
+        .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 4px; color: var(--accent); margin-bottom: 20px; display: block; font-weight: 700; }
+        h1 { font-family: var(--serif); font-size: clamp(3rem, 10vw, 7rem); line-height: 0.9; margin-bottom: 30px; font-weight: 400; }
+        h2 { font-family: var(--serif); font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; font-weight: 400; }
+        h3 { font-family: var(--serif); font-size: 2.2rem; margin-bottom: 15px; font-weight: 400; }
+        p { font-size: 1.1rem; color: var(--text-muted); max-width: 500px; font-weight: 300; }
+        .manifesto-text { font-family: var(--serif); font-size: 2.8rem; line-height: 1.2; color: var(--text); max-width: 1000px; margin: 0 auto; }
+
+        /* NOBLE CTA */
+        .noble-link {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+            transition: 0.3s;
+        }
+        .noble-link::after { content: '→'; transition: 0.3s; }
+        .noble-link:hover { gap: 25px; }
+
+        /* ANIMATIONS (DRAWING LINES) */
+        .hairline-anim { position: absolute; background: var(--accent); height: 1px; width: 100%; top: 0; left: 0; transform-origin: left; transform: scaleX(0); transition: 1.5s cubic-bezier(0.23, 1, 0.32, 1); }
+        .reveal .hairline-anim { transform: scaleX(1); }
+
+        /* MOBILE */
+        @media (max-width: 1024px) {
+            .bento-grid { display: flex; flex-direction: column; }
+            .bento-item { border-right: none; padding: 60px 5%; }
+            h1 { font-size: 4rem; }
+            .manifesto { padding: 80px 5%; }
+            .manifesto-text { font-size: 1.8rem; }
+        }
 
         /* WA FLOAT */
-        .wa-float { position: fixed; bottom: 40px; right: 40px; width: 65px; height: 65px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(37,211,102,0.3); z-index: 1000; color: white; text-decoration: none; transition: 0.3s; }
-        .wa-float:hover { transform: scale(1.1); }
-
-        @media (max-width: 968px) { section { padding: 80px 0; } }
+        .wa-float { position: fixed; bottom: 40px; right: 40px; width: 60px; height: 60px; border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; z-index: 1000; background: var(--primary); color: var(--accent); transition: 0.3s; text-decoration: none; font-size: 12px; font-weight: bold; }
+        .wa-float:hover { background: var(--accent); color: var(--primary); transform: scale(1.1); }
     </style>
 </head>
-<body class="theme-urgent">
+<body>
 
-    <a href="https://wa.me/5531999393230?text=Olá! Gostaria de agendar uma consulta estratégica." class="wa-float" id="whatsapp-link" target="_blank">
-        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
-    </a>
+    <a href="https://wa.me/5531999393230?text=Olá! Gostaria de agendar uma consulta estratégica." class="wa-float" id="whatsapp-link" target="_blank">WHATSAPP</a>
 
-    <nav id="navbar">
-        <div class="container nav-content">
-            <a href="#" class="logo">SHRC ADVOCACIA</a>
-            <div class="nav-links">
-                <a href="#reviews">Resultados</a>
-                <a href="https://wa.me/5531999393230?text=Olá! Gostaria de agendar uma consulta estratégica." class="btn btn-outline btn-sm">Agendar Consulta</a>
-            </div>
+    <div class="bento-grid">
+        
+        <!-- BLOCK 1: HERO TEXT -->
+        <div class="bento-item hero-text">
+            <div class="hairline-anim"></div>
+            <span class="label">Rigour. Authority. Results.</span>
+            <h1>Defesa Inabalável.</h1>
+            <p>A arquitetura jurídica por trás dos maiores legados corporativos e criminais do país.</p>
+            <a href="https://wa.me/5531999393230?text=Olá! Gostaria de agendar uma consulta estratégica." class="noble-link">Solicitar Consulta</a>
         </div>
-    </nav>
 
-    <!-- HERO -->
-    <header class="hero" id="home" style="background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070&auto=format&fit=crop');">
-        <div class="container hero-content">
-            <span class="uppercase">Defesa Criminal 24h</span>
-            <h1>Sua Liberdade não pode esperar.</h1>
-            <p>Atendimento especializado com a autoridade de quem possui 113 avaliações nota máxima no Google.</p>
-            <div class="hero-btns">
-                <a href="https://wa.me/5531999393230?text=Olá! Gostaria de agendar uma consulta estratégica." class="btn btn-primary">Falar com Especialista Agora</a>
-            </div>
+        <!-- BLOCK 2: HERO IMG -->
+        <div class="bento-item hero-img">
+            <div class="hairline-anim"></div>
+            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070&auto=format&fit=crop">
         </div>
-    </header>
 
-    <!-- REVIEWS -->
-    <section id="reviews">
-        <div class="container">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
-                <div>
-                    <span class="uppercase">Resultados Reais</span>
-                    <h2 style="font-family: var(--serif); font-size: 3.5rem;">O que dizem quem confiou em nós.</h2>
-                </div>
-                <div id="reviews-container">
-                    <div class="review-card">
-                        <p class="review-text">"Rafael Camargo Aragão: Esse advogado é o melhor criminalista de minas gerais não tem igual recomendo muito Deus abençoe sempre."</p>
-                    </div>
-                    <div class="review-card">
-                        <p class="review-text">"Gleiciane Medeiros: Perfeito demais. Renomado, responsável, atencioso e melhor: resolve o problema."</p>
-                    </div>
-                </div>
-            </div>
+        <!-- BLOCK 3: MANIFESTO -->
+        <div class="bento-item manifesto">
+            <div class="hairline-anim"></div>
+            <span class="label">Manifesto</span>
+            <p class="manifesto-text">Diferente de escritórios genéricos, operamos como uma boutique de inteligência jurídica.</p>
         </div>
-    </section>
 
-    <!-- CONTACT -->
-    <section id="contact" style="background: var(--secondary); text-align: center;">
-        <div class="container">
-            <span class="uppercase">Contato Imediato</span>
-            <h2 style="font-family: var(--serif); font-size: 3.5rem; margin-bottom: 30px;">Pronto para resolver sua pendência?</h2>
-            <a href="https://wa.me/5531999393230?text=Olá! Gostaria de agendar uma consulta estratégica." class="btn btn-primary btn-lg">Agendar Consulta Agora</a>
+        <!-- BLOCK 4: PRACTICE A -->
+        <div class="bento-item practice-a">
+            <div class="hairline-anim"></div>
+            <span class="label">Especialidade 01</span>
+            <h3>Tribunal do Júri</h3>
+            <p>Sustentação oral e defesa técnica agressiva perante o conselho de sentença.</p>
         </div>
-    </section>
 
-    <footer style="padding: 80px 0; border-top: var(--hairline);">
-        <div class="container" style="text-align: center;">
-            <p>&copy; 2026 SHRC ADVOCACIA | Powered by AUTOMINDS AGDF</p>
+        <!-- BLOCK 5: PRACTICE B -->
+        <div class="bento-item practice-b">
+            <div class="hairline-anim"></div>
+            <span class="label">Especialidade 02</span>
+            <h3>Casos Complexos</h3>
+            <p>Atuação em investigações de colarinho branco e crimes federais de alta complexidade.</p>
         </div>
+
+        <!-- BLOCK 6: PRACTICE IMG -->
+        <div class="bento-item practice-img">
+            <div class="hairline-anim"></div>
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop">
+        </div>
+
+        <!-- BLOCK 7: PRACTICE C -->
+        <div class="bento-item practice-c">
+            <div class="hairline-anim"></div>
+            <span class="label">Visão Geral</span>
+            <h2>Engenharia de Soluções.</h2>
+            <p>Transformamos a complexidade jurídica em segurança absoluta para nossos clientes, com o rigor de quem detém 113 avaliações máximas.</p>
+        </div>
+
+        <!-- BLOCK 8: PARTNER IMG -->
+        <div class="bento-item partner-img">
+            <div class="hairline-anim"></div>
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop">
+        </div>
+
+        <!-- BLOCK 9: PARTNER BIO -->
+        <div class="bento-item partner-bio">
+            <div class="hairline-anim"></div>
+            <span class="label">A Liderança</span>
+            <h2>Dr. Samuel Henrique Rodrigues</h2>
+            <p>Especialista em Direito Penal e Criminologia, reconhecido pela agilidade e profundidade técnica em casos de repercussão nacional.</p>
+            <a href="https://wa.me/5531999393230?text=Olá! Gostaria de agendar uma consulta estratégica." class="noble-link">Ver Perfil Completo</a>
+        </div>
+
+        <!-- BLOCK 10: CTA FINAL -->
+        <div class="bento-item cta-box">
+            <div class="hairline-anim"></div>
+            <h2 style="font-size: 5rem;">Acesso à Banca.</h2>
+            <p style="margin: 0 auto 40px;">Seu caso merece o rigor de especialistas de elite.</p>
+            <a href="https://wa.me/5531999393230?text=Olá! Gostaria de agendar uma consulta estratégica." style="font-size: 1.2rem; text-decoration: none; color: var(--accent); border: 1px solid var(--accent); padding: 20px 60px; letter-spacing: 4px; font-weight: bold; text-transform: uppercase;">Agendar Consulta</a>
+        </div>
+
+    </div>
+
+    <footer style="padding: 60px; border-top: var(--hairline); display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px;">
+        <div>SHRC ADVOCACIA</div>
+        <div>© 2026 AUTOMINDS ELITE SYSTEMS</div>
+        <div>Belo Horizonte, MG</div>
     </footer>
 
     <script>
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
-        });
+        function reveal() {
+            document.querySelectorAll('.bento-item').forEach((el, i) => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 50) {
+                    setTimeout(() => {
+                        el.classList.add('reveal');
+                    }, i * 100);
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        window.onload = () => {
+            setTimeout(reveal, 200);
+        };
     </script>
 </body>
 </html>
